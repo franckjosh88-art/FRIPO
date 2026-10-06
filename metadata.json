@@ -1,0 +1,6 @@
+{
+  "name": "Fripo - Marketplace Vintage & Streetwear",
+  "description": "Découvre ce que valent tes habits. Achetez, vendez et estimez la valeur de votre garde-robe vintage et streetwear entre particuliers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

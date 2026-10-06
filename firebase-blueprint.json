@@ -1,0 +1,165 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Profil d'un membre de la marketplace Fripo",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID unique de l'utilisateur" },
+        "username": { "type": "string", "description": "Pseudo unique" },
+        "email": { "type": "string", "description": "Email" },
+        "photoUrl": { "type": "string", "description": "Avatar" },
+        "bio": { "type": "string", "description": "Courte biographie" },
+        "website": { "type": "string", "description": "Lien site web" },
+        "followersCount": { "type": "number", "description": "Nombre d'abonnés" },
+        "followingCount": { "type": "number", "description": "Nombre d'abonnements" },
+        "ratingAvg": { "type": "number", "description": "Note moyenne" },
+        "ratingCount": { "type": "number", "description": "Nombre d'avis" },
+        "createdAt": { "type": "number", "description": "Date de création" }
+      },
+      "required": ["id", "username", "email", "createdAt"]
+    },
+    "ClothingItem": {
+      "title": "ClothingItem",
+      "description": "Vêtement ou accessoire vintage mis en vente",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID unique de l'article" },
+        "sellerId": { "type": "string", "description": "ID du vendeur" },
+        "sellerUsername": { "type": "string", "description": "Pseudo du vendeur" },
+        "sellerPhotoUrl": { "type": "string", "description": "Avatar du vendeur" },
+        "sellerRatingAvg": { "type": "number", "description": "Note moyenne du vendeur" },
+        "sellerRatingCount": { "type": "number", "description": "Nombre d'avis du vendeur" },
+        "title": { "type": "string", "description": "Titre du vêtement" },
+        "description": { "type": "string", "description": "Description" },
+        "category": { "type": "string", "description": "Catégorie" },
+        "size": { "type": "string", "description": "Taille" },
+        "condition": { "type": "string", "description": "État du vêtement" },
+        "brand": { "type": "string", "description": "Marque" },
+        "era": { "type": "string", "description": "Époque / décennie" },
+        "price": { "type": "number", "description": "Prix demandé" },
+        "currency": { "type": "string", "description": "Devise (USD ou CDF)" },
+        "negotiable": { "type": "boolean", "description": "Négociable" },
+        "images": { "type": "array", "description": "Photos du vêtement" },
+        "status": { "type": "string", "description": "Statut (draft, active, sold)" },
+        "createdAt": { "type": "number", "description": "Date de création" }
+      },
+      "required": ["id", "sellerId", "title", "price", "currency", "status", "createdAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Conversation entre un acheteur et un vendeur",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID de la conversation" },
+        "participants": { "type": "array", "description": "Membres de la conversation" },
+        "itemId": { "type": "string", "description": "ID de l'article concerné" },
+        "itemTitle": { "type": "string", "description": "Titre de l'article" },
+        "itemPrice": { "type": "number", "description": "Prix de l'article" },
+        "lastMessage": { "type": "string", "description": "Dernier message envoyé" },
+        "lastSenderId": { "type": "string", "description": "Expéditeur du dernier message" },
+        "updatedAt": { "type": "number", "description": "Dernière mise à jour" }
+      },
+      "required": ["id", "participants", "itemId", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Message dans une conversation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID du message" },
+        "conversationId": { "type": "string", "description": "ID de la conversation" },
+        "senderId": { "type": "string", "description": "ID de l'expéditeur" },
+        "senderUsername": { "type": "string", "description": "Pseudo de l'expéditeur" },
+        "text": { "type": "string", "description": "Contenu texte" },
+        "imageUrl": { "type": "string", "description": "Image jointe éventuelle" },
+        "createdAt": { "type": "number", "description": "Horodatage" }
+      },
+      "required": ["id", "conversationId", "senderId", "createdAt"]
+    },
+    "ValueSnapshot": {
+      "title": "ValueSnapshot",
+      "description": "Instantané de valeur du closet à une date donnée",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID de l'instantané" },
+        "userId": { "type": "string", "description": "ID du propriétaire du closet" },
+        "date": { "type": "number", "description": "Date de l'instantané" },
+        "value": { "type": "number", "description": "Somme des articles actifs" }
+      },
+      "required": ["id", "userId", "date", "value"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Évaluation après transaction",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID de l'avis" },
+        "sellerId": { "type": "string", "description": "ID du vendeur" },
+        "buyerId": { "type": "string", "description": "ID de l'acheteur" },
+        "itemId": { "type": "string", "description": "ID de l'article" },
+        "stars": { "type": "number", "description": "Note de 1 à 5" },
+        "comment": { "type": "string", "description": "Commentaire" },
+        "createdAt": { "type": "number", "description": "Date de publication" }
+      },
+      "required": ["id", "sellerId", "buyerId", "itemId", "stars", "createdAt"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Signalement utilisateur ou article",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID du signalement" },
+        "reporterId": { "type": "string", "description": "ID du signaleur" },
+        "targetId": { "type": "string", "description": "ID de la cible" },
+        "reason": { "type": "string", "description": "Motif" },
+        "createdAt": { "type": "number", "description": "Horodatage" }
+      },
+      "required": ["id", "reporterId", "targetId", "reason", "createdAt"]
+    },
+    "Favorite": {
+      "title": "Favorite",
+      "description": "Favori d'un utilisateur",
+      "type": "object",
+      "properties": {
+        "itemId": { "type": "string", "description": "ID de l'article favori" },
+        "createdAt": { "type": "number", "description": "Date d'ajout aux favoris" }
+      },
+      "required": ["itemId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Profils des utilisateurs"
+    },
+    "/users/{userId}/favorites/{itemId}": {
+      "schema": { "$ref": "#/entities/Favorite" },
+      "description": "Articles favoris d'un utilisateur"
+    },
+    "/users/{userId}/valueSnapshots/{snapshotId}": {
+      "schema": { "$ref": "#/entities/ValueSnapshot" },
+      "description": "Historique de valorisation du closet"
+    },
+    "/items/{itemId}": {
+      "schema": { "$ref": "#/entities/ClothingItem" },
+      "description": "Annonces de vêtements de la marketplace"
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Conversations privées"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Messages d'une conversation"
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/Review" },
+      "description": "Avis laissés suite aux ventes"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/Report" },
+      "description": "Signalements de sécurité"
+    }
+  }
+}
